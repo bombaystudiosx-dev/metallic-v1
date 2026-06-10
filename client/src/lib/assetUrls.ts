@@ -10,12 +10,14 @@ export const ASSET_URLS = {
   products: {
     metallicV1: "/uploads/product-metallic-v1.jpeg",
     zouk: "/uploads/product-zouk.jpeg",
-    naughtyPilot: "/uploads/product-couch.jpeg",
+    naughtyPilot: "/uploads/product-naughty-pilot.jpeg",
     uncensoredUncertain: "/uploads/product-founder-shirt.png",
-    fluentBridge: "/uploads/product-zouk-alt.jpeg",
+    fluentBridge: "/uploads/product-fluent-bridge.jpeg",
     founderGear: "/uploads/product-founder-shirt.png",
   },
   logos: {
     mv1: "/uploads/mv1-logo.jpeg",
+    // Transparent-background emblem, suits dark surfaces
+    mv1Emblem: "/uploads/mv1-logo-emblem.png",
   },
 };
