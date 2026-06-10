@@ -79,7 +79,7 @@ export default function AccessModal({ open, onOpenChange, onSubmit }: AccessModa
         </form>
 
         <p className="text-xs text-muted-foreground text-center">
-          Access is granted immediately. Session saved. No login required.
+          Access is granted immediately on this device. No login required.
         </p>
       </DialogContent>
     </Dialog>
