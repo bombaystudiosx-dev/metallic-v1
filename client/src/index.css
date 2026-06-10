@@ -1,0 +1,369 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* METALLIC.V1 Dark Theme */
+  --primary: #00ff88;
+  --primary-foreground: #000000;
+  --sidebar-primary: #00ff88;
+  --sidebar-primary-foreground: #000000;
+  --chart-1: #00ff88;
+  --chart-2: #00cc6a;
+  --chart-3: #009952;
+  --chart-4: #006633;
+  --chart-5: #003d1f;
+  --radius: 0.5rem;
+  
+  /* Dark void background */
+  --background: oklch(0.05 0 0);
+  --foreground: oklch(0.95 0.01 0);
+  
+  /* Graphite cards */
+  --card: oklch(0.12 0.01 0);
+  --card-foreground: oklch(0.95 0.01 0);
+  
+  /* Popover */
+  --popover: oklch(0.12 0.01 0);
+  --popover-foreground: oklch(0.95 0.01 0);
+  
+  /* Secondary - charcoal */
+  --secondary: oklch(0.18 0.01 0);
+  --secondary-foreground: oklch(0.95 0.01 0);
+  
+  /* Muted */
+  --muted: oklch(0.25 0.01 0);
+  --muted-foreground: oklch(0.75 0.01 0);
+  
+  /* Accent - electric green */
+  --accent: #00ff88;
+  --accent-foreground: #000000;
+  
+  /* Destructive - deep red */
+  --destructive: #8b0000;
+  --destructive-foreground: oklch(0.95 0.01 0);
+  
+  /* Border */
+  --border: oklch(0.2 0.01 0);
+  --input: oklch(0.15 0.01 0);
+  --ring: #00ff88;
+  
+  /* Sidebar */
+  --sidebar: oklch(0.08 0 0);
+  --sidebar-foreground: oklch(0.95 0.01 0);
+  --sidebar-accent: #00ff88;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: oklch(0.2 0.01 0);
+  --sidebar-ring: #00ff88;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* METALLIC.V1 Custom Styles */
+  
+  /* Glow effect for text */
+  .glow-text {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+
+  /* Electric green glow on hover */
+  .hover-glow {
+    @apply transition-all duration-200;
+  }
+
+  .hover-glow:hover {
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+    @apply text-accent;
+  }
+
+  /* Fullscreen background video */
+  .bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  /* Glassmorphism panel - subtle and transparent */
+  .glass-panel {
+    background: rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Fade in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .fade-in-delayed {
+    animation: fadeIn 0.6s ease-out 0.2s both;
+  }
+
+  .slide-up {
+    animation: slideUp 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .slide-down {
+    animation: slideDown 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Thin divider line */
+  .divider-line {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Four-corner positioning utilities */
+  .corner-tl {
+    @apply absolute top-0 left-0;
+  }
+
+  .corner-tr {
+    @apply absolute top-0 right-0;
+  }
+
+  .corner-bl {
+    @apply absolute bottom-0 left-0;
+  }
+
+  .corner-br {
+    @apply absolute bottom-0 right-0;
+  }
+
+  /* Mobile-optimized touch targets */
+  button, a[href], [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Native scrolling */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent double tap zoom */
+  input[type="button"],
+  input[type="submit"],
+  input[type="file"],
+  button,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+
+  /* Mobile-safe spacing */
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+  }
+
+  /* Premium status badge */
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    line-height: 1rem;
+    text-transform: uppercase;
+    background: rgba(0, 255, 136, 0.15);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+  }
+
+  .status-badge.coming-soon {
+    background: rgba(139, 0, 0, 0.15);
+    color: #8b0000;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+  }
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  overscroll-behavior-y: auto;
+  background: #050505;
+}
+
+input, textarea, select {
+  font-size: 16px;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+}
+
+.countdown-number {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.label-uppercase {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
