@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "wouter";
+import { toast } from "sonner";
 import CountdownTimer from "@/components/CountdownTimer";
 import AccessModal from "@/components/AccessModal";
+import { submitAccessRequest } from "@/lib/accessRequests";
 import { ASSET_URLS } from "@/lib/assetUrls";
 
 /**
@@ -31,10 +33,18 @@ export default function Home() {
   }, []);
 
   const handleAccessSubmit = (email: string, name?: string) => {
+    // Grant device access immediately; lead capture runs in the background
+    // so a slow or failed network call never blocks the visitor.
     localStorage.setItem("metallic-v1-access", "true");
     localStorage.setItem("metallic-v1-email", email);
     if (name) localStorage.setItem("metallic-v1-name", name);
     setHasAccess(true);
+
+    void submitAccessRequest(email, name).then((recorded) => {
+      if (!recorded) {
+        toast.error("We couldn't save your request right now, but you're in on this device.");
+      }
+    });
   };
 
   const handleFlagshipsClick = () => {
