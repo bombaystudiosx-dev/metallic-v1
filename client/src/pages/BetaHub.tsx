@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import FounderProgram from "@/components/FounderProgram";
 import { ASSET_URLS } from "@/lib/assetUrls";
@@ -15,13 +15,6 @@ import { ASSET_URLS } from "@/lib/assetUrls";
 
 export default function BetaHub() {
   const [, setLocation] = useLocation();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  }, []);
 
   const handleAccessCheck = () => {
     const hasAccess = localStorage.getItem("metallic-v1-access") === "true";
@@ -36,16 +29,13 @@ export default function BetaHub() {
 
   return (
     <div className="relative w-screen min-h-screen overflow-auto">
-      {/* Background Video - Fullscreen */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
+      {/* Background - Fullscreen */}
+      <img
+        alt=""
+        aria-hidden="true"
         className="fixed inset-0 w-full h-full object-cover -z-10"
         src={ASSET_URLS.backgrounds.betaHub}
-        style={{ display: "block" }}
+        loading="eager"
       />
 
       {/* Content Container */}

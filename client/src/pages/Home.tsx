@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import CountdownTimer from "@/components/CountdownTimer";
@@ -24,13 +24,6 @@ export default function Home() {
   const [hasAccess, setHasAccess] = useState(() => {
     return localStorage.getItem("metallic-v1-access") === "true";
   });
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  }, []);
 
   const handleAccessSubmit = (email: string, name?: string) => {
     // Grant device access immediately; lead capture runs in the background
@@ -65,16 +58,14 @@ export default function Home() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">
-      {/* Background Video */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
+      {/* Background */}
+      <img
+        alt=""
+        aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
         src={ASSET_URLS.backgrounds.home}
-        style={{ display: "block" }}
+        loading="eager"
+        fetchPriority="high"
       />
 
       {/* Content */}

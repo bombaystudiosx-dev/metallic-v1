@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { Flagship } from "@/lib/flagships";
 import { X } from "lucide-react";
 import { ASSET_URLS } from "@/lib/assetUrls";
@@ -10,27 +9,16 @@ interface FlagshipDetailProps {
 
 export default function FlagshipDetail({ flagship, onClose }: FlagshipDetailProps) {
   const isAvailable = flagship.status === "AVAILABLE NOW";
-  const bgVideo = ASSET_URLS.backgrounds.flagships;
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  }, []);
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
-      {/* Background Video */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
+      {/* Background */}
+      <img
+        alt=""
+        aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
-        src={bgVideo}
-        style={{ display: "block" }}
+        src={ASSET_URLS.backgrounds.flagships}
+        loading="eager"
       />
 
       {/* Overlay */}
